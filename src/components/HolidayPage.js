@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './HolidayPage.css';
-import PackageDetail from './PackageDetail';
 
 const HolidayPage = () => {
   const initialFilters = {
@@ -87,7 +86,6 @@ const HolidayPage = () => {
 
   const [filters, setFilters] = useState(initialFilters);
   const [filteredPackages, setFilteredPackages] = useState(packages);
-  const [selectedPackage, setSelectedPackage] = useState(null);
 
   const resetFilters = () => {
     setFilters(initialFilters);
@@ -115,100 +113,89 @@ const HolidayPage = () => {
 
   useEffect(() => {
     setFilteredPackages(packages);
-  }, [packages]);
-  
+  }, []);
 
-  const handlePackageClick = (pkg) => {
-    setSelectedPackage(pkg);
-  };
   return (
     <div className="holiday-page">
-      {selectedPackage ? (
-        <PackageDetail pkg={selectedPackage} />
-      ) : (
-        <>
-          <div className="sidebar">
-            <button className="reset-button" onClick={resetFilters}>Reset Filters</button>
-            <h3>Filter</h3><br />
-            <label htmlFor="range">Price Range: <span id="priceValue">{filters.range}</span></label><br />
-            <input
-              type="range"
-              id="range"
-              name="range"
-              min="5000"
-              max="20000"
-              value={filters.range}
-              onChange={(e) => updateFilters('range', parseInt(e.target.value))}
-            /><br /><br />
-  
-            <label htmlFor="duration">Duration:</label>
-            <select
-              id="duration"
-              name="duration"
-              value={filters.duration}
-              onChange={(e) => updateFilters('duration', parseInt(e.target.value))}
-            >
-              <option value="0">Any</option>
-              <option value="3">3 days</option>
-              <option value="5">5 days</option>
-              <option value="7">7 days</option>
-            </select><br /><br />
-  
-            <label htmlFor="packageName">Package Name:</label>
-            <input
-              type="text"
-              id="packageName"
-              name="packageName"
-              value={filters.packageName}
-              onChange={(e) => updateFilters('packageName', e.target.value)}
-            /><br /><br />
-  
-            <label htmlFor="destination">Destination:</label>
-            <select
-              id="destination"
-              name="destination"
-              value={filters.destination}
-              onChange={(e) => updateFilters('destination', e.target.value)}
-            >
-              <option value="">Any</option>
-              <option value="Cox's Bazar">Cox's Bazar</option>
-              <option value="Sajek">Sajek</option>
-              <option value="Tanguar Haor">Tanguar Haor</option>
-              <option value="Sylhet">Sylhet</option>
-              <option value="Bandarban">Bandarban</option>
-            </select><br /><br />
-  
-            <button className="apply-button" onClick={() => applyFilters(filters)}>Apply Filters</button>
-          </div>
-  
-          <div>
-            <h1>Exciting Holiday Packages</h1>
-            <p>Discover the best travel deals and explore stunning destinations.</p>
-            <div className="tour-packages">
-              {filteredPackages.length > 0 ? (
-                filteredPackages.map(pkg => (
-                  <div
-                    key={pkg.id}
-                    className="tour-package"
-                    style={{ backgroundImage: `url(images/${pkg.image})` }}
-                    onClick={() => handlePackageClick(pkg)}  
-                  >
-                    <h3>{pkg.name}</h3>
-                    <p>{pkg.description}</p>
-                    <p>Price: Tk{pkg.price}</p>
-                  </div>
-                ))
-              ) : (
-                <div className="no-results">
-                  <h3>Sorry, no tour packages match your criteria.</h3>
-                </div>
-              )}
+      <div className="sidebar">
+        <button className="reset-button" onClick={resetFilters}>Reset Filters</button>
+        <h3>Filter</h3><br />
+        <label htmlFor="range">Price Range: <span id="priceValue">{filters.range}</span></label><br />
+        <input
+          type="range"
+          id="range"
+          name="range"
+          min="5000"
+          max="20000"
+          value={filters.range}
+          onChange={(e) => updateFilters('range', parseInt(e.target.value))}
+        /><br /><br />
+
+        <label htmlFor="duration">Duration:</label>
+        <select
+          id="duration"
+          name="duration"
+          value={filters.duration}
+          onChange={(e) => updateFilters('duration', parseInt(e.target.value))}
+        >
+          <option value="0">Any</option>
+          <option value="3">3 days</option>
+          <option value="5">5 days</option>
+          <option value="7">7 days</option>
+        </select><br /><br />
+
+        <label htmlFor="packageName">Package Name:</label>
+        <input
+          type="text"
+          id="packageName"
+          name="packageName"
+          value={filters.packageName}
+          onChange={(e) => updateFilters('packageName', e.target.value)}
+        /><br /><br />
+
+        <label htmlFor="destination">Destination:</label>
+        <select
+          id="destination"
+          name="destination"
+          value={filters.destination}
+          onChange={(e) => updateFilters('destination', e.target.value)}
+        >
+          <option value="">Any</option>
+          <option value="Cox's Bazar">Cox's Bazar</option>
+          <option value="Sajek">Sajek</option>
+          <option value="Tanguar Haor">Tanguar Haor</option>
+          <option value="Sylhet">Sylhet</option>
+          <option value="Bandarban">Bandarban</option>
+        </select><br /><br />
+
+        <button className="apply-button" onClick={() => applyFilters(filters)}>Apply Filters</button>
+      </div>
+
+      <div>
+        <h1>Exciting Holiday Packages</h1>
+        <p>Discover the best travel deals and explore stunning destinations.</p>
+        <div className="tour-packages">
+          {filteredPackages.length > 0 ? (
+            filteredPackages.map(pkg => (
+              <div
+                key={pkg.id}
+                className="tour-package"
+                style={{ backgroundImage: `url(images/${pkg.image})` }}
+              >
+                <h3>{pkg.name}</h3>
+                <p>{pkg.description}</p>
+                <p>Price: Tk{pkg.price}</p>
+              </div>
+            ))
+          ) : (
+            <div className="no-results">
+              <h3>Sorry, no tour packages match your criteria.</h3>
             </div>
-          </div>
-        </>
-      )}
+          )}
+        </div>
+      </div>
     </div>
-  );  
+  );
 };
 
 export default HolidayPage;
