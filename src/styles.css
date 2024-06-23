@@ -42,14 +42,23 @@ body {
     cursor: pointer;
   }
   
+
   .video-background {
     position: relative;
-  }
-  
-  video {
     width: 100%;
-    height: auto;
-  }
+    height: 500px;
+    overflow: hidden;
+}
+
+.video-background video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
   
   .video-overlay {
     position: absolute;
@@ -70,16 +79,60 @@ body {
     margin: 20px 0;
   }
   
-  .pic-container, .pic-container1 {
-    flex: 1;
-    margin: 10px;
-    padding: 20px;
+  .pic-container {
+    width: calc(47% - 20px);
+    height: 300px;
+    margin-bottom: 50px;
     background-size: cover;
     background-position: center;
-    color: #fff;
-    text-align: center;
-    cursor: pointer;
-  }
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: last baseline;
+    flex-direction: column;
+    text-align: right;
+    border-radius: 3%;
+}
+
+.pic-container1 {
+    width: calc(33% - 20px);
+    height: 300px;
+    margin-bottom: 20px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: last baseline;
+    flex-direction: column;
+    text-align: right;
+    border-radius: 3%;
+}
+
+.pic-container img {
+    max-width: 100%;
+    height: 300px;
+    border-radius: 8px;
+}
+
+.pic-container p {
+
+    font-size: 16px;
+    color: #555;
+}
+
+@media (max-width: 768px) {
+    .pic-container {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+.pic-container:hover img, .pic-container1:hover img {
+    transform: scale(1.1);
+}
+
   
   .hotel-container {
     display: flex;
@@ -177,3 +230,11 @@ body {
     cursor: pointer;
   }
   
+#explore {
+  margin-top: 70px;
+  text-align: center;
+}
+
+#explore-heading {
+  margin-bottom: 35px;
+}

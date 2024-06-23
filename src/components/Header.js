@@ -1,4 +1,3 @@
-// src/components/Header.js
 import React from 'react';
 
 const Header = ({ onNavClick }) => {
@@ -14,6 +13,8 @@ const Header = ({ onNavClick }) => {
         <ul>
           <li><button onClick={() => onNavClick('home')}>Home</button></li>
           <li><button onClick={() => onNavClick('holiday')}>Holiday</button></li>
+          <li><button onClick={() => onNavClick('hotel')}>Hotel</button></li>
+
           <li className="dropdown">
             <button>Others</button>
             <div className="dropdown-content">

@@ -5,10 +5,15 @@ import Explore from './components/Explore';
 import TrendingHotels from './components/TrendingHotels';
 import Modal from './components/Modal';
 import HolidayPage from './components/HolidayPage';
+import HotelPage from './components/HotelPage';
 import './styles.css';
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState('home');
+
+  const handleNavClick = (page) => {
+    setCurrentPage(page);
+  };
 
   const renderContent = () => {
     switch (currentPage) {
@@ -23,6 +28,8 @@ const App = () => {
         );
       case 'holiday':
         return <HolidayPage />;
+      case 'hotel':
+        return <HotelPage />;
       case 'why':
         return <div>Why WanderHub?</div>; 
       case 'faq':
@@ -36,7 +43,7 @@ const App = () => {
 
   return (
     <div>
-      <Header onNavClick={setCurrentPage} />
+      <Header onNavClick={handleNavClick} />
       {renderContent()}
     </div>
   );
