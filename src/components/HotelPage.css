@@ -126,3 +126,31 @@
     border-radius: 3px;
     cursor: pointer;
   }
+  .booking-form {
+    text-align: left;
+    margin: 20px;
+  }
+  
+  .booking-form .form-group {
+    margin-bottom: 10px;
+  }
+  
+  .booking-form .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .booking-table {
+    margin: 20px;
+  }
+  
+  .booking-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .booking-table th, .booking-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+  }
