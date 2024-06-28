@@ -6,12 +6,18 @@ import TrendingHotels from './components/TrendingHotels';
 import Modal from './components/Modal';
 import HolidayPage from './components/HolidayPage';
 import HotelPage from './components/HotelPage';
+import HotelDetails from './components/HotelDetails';
+import BookingForm from './components/BookingForm';
 import './styles.css';
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState('home');
+  const [selectedHotel, setSelectedHotel] = useState(null);
+  const [selectedRoom, setSelectedRoom] = useState('');
 
-  const handleNavClick = (page) => {
+  const navigateTo = (page, hotel = null, room = '') => {
+    setSelectedHotel(hotel);
+    setSelectedRoom(room);
     setCurrentPage(page);
   };
 
@@ -22,20 +28,32 @@ const App = () => {
           <>
             <VideoBackground />
             <Explore />
-            <TrendingHotels />
+            <TrendingHotels navigateTo={navigateTo} />
             <Modal />
           </>
         );
       case 'holiday':
         return <HolidayPage />;
       case 'hotel':
-        return <HotelPage />;
+        return <HotelPage navigateTo={navigateTo} />;
+      case 'details':
+        return selectedHotel && (
+          <HotelDetails
+            hotel={selectedHotel}
+            navigateTo={navigateTo}
+            setSelectedRoom={setSelectedRoom}
+          />
+        );
+      case 'booking':
+        return selectedHotel && selectedRoom && (
+          <BookingForm hotel={selectedHotel} room={selectedRoom} />
+        );
       case 'why':
-        return <div>Why WanderHub?</div>; 
+        return <div>Why WanderHub?</div>;
       case 'faq':
-        return <div>FAQ</div>; 
+        return <div>FAQ</div>;
       case 'about':
-        return <div>About</div>; 
+        return <div>About</div>;
       default:
         return <div>Page not found</div>;
     }
@@ -43,7 +61,7 @@ const App = () => {
 
   return (
     <div>
-      <Header onNavClick={handleNavClick} />
+      <Header onNavClick={navigateTo} />
       {renderContent()}
     </div>
   );
