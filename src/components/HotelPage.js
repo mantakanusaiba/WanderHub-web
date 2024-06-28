@@ -43,10 +43,9 @@ const hotels = [
     rooms: ["Single", "Double", "Executive"]
   }
 ];
-
-const HotelPage = () => {
+const HotelPage = ({ navigateTo }) => {
   const [searchInput, setSearchInput] = useState('');
-  const [filteredHotels, setFilteredHotels] = useState([]);
+  const [filteredHotels, setFilteredHotels] = useState(hotels);
 
   const handleSearch = (event) => {
     event.preventDefault();
@@ -60,7 +59,7 @@ const HotelPage = () => {
   return (
     <div className="hotel-page">
       <header>
-        
+       
       </header>
       <main>
         <section className="welcome-section">
@@ -70,11 +69,11 @@ const HotelPage = () => {
         <section className="search-section">
           <form id="searchForm" onSubmit={handleSearch}>
             <div className="form-group">
-              <label htmlFor="to">To</label>
+              <label htmlFor="to">Hotel Name</label>
               <input
                 type="text"
                 id="to"
-                placeholder="To"
+                placeholder="Hotel Name"
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
               />
@@ -98,7 +97,7 @@ const HotelPage = () => {
                       <p className="discount-price">{hotel.discountPrice}/Night <span className="discount">{hotel.discount}</span></p>
                       <p className="price-includes">*Price includes VAT & Tax</p>
                     </div>
-                    <button className="book-now" data-hotel={hotel.name}>BOOK NOW</button>
+                    <button className="book-now" onClick={() => navigateTo('details', hotel)}>BOOK NOW</button>
                   </div>
                 </div>
               ))
