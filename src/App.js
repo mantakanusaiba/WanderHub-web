@@ -1,45 +1,36 @@
 import React, { useState } from 'react';
-import Header from './components/Header';
-import VideoBackground from './components/VideoBackground';
-import Explore from './components/Explore';
-import TrendingHotels from './components/TrendingHotels';
-import Modal from './components/Modal';
-import HolidayPage from './components/HolidayPage';
+import ReactDOM from 'react-dom';
+import Login from './components/Login';
+import Register from './components/Register';
+import HomePage from './components/Homepage';
 import './styles.css';
 
 const App = () => {
-  const [currentPage, setCurrentPage] = useState('home');
+  const [user, setUser] = useState(null);
+  const [isRegistering, setIsRegistering] = useState(false);
 
-  const renderContent = () => {
-    switch (currentPage) {
-      case 'home':
-        return (
-          <>
-            <VideoBackground />
-            <Explore />
-            <TrendingHotels />
-            <Modal />
-          </>
-        );
-      case 'holiday':
-        return <HolidayPage />;
-      case 'why':
-        return <div>Why WanderHub?</div>; 
-      case 'faq':
-        return <div>FAQ</div>; 
-      case 'about':
-        return <div>About</div>; 
-      default:
-        return <div>Page not found</div>;
-    }
+  const handleLogin = (user) => {
+    setUser(user);
+  };
+
+  const handleRegister = (user) => {
+    setUser(user);
+    setIsRegistering(false);
   };
 
   return (
     <div>
-      <Header onNavClick={setCurrentPage} />
-      {renderContent()}
+      {user ? (
+        <HomePage />
+      ) : isRegistering ? (
+        <Register onRegister={handleRegister} setIsRegistering={setIsRegistering} />
+      ) : (
+        <Login onLogin={handleLogin} setIsRegistering={setIsRegistering} />
+      )}
     </div>
   );
 };
 
 export default App;
+
+ReactDOM.render(<App />, document.getElementById('root'));
