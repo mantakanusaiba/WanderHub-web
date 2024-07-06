@@ -27,7 +27,7 @@ const TrendingHotels = () => {
 
       <div className="hotel-container">
         <div className="hotel-image">
-          <img src="/images/avi.jpeg" alt="Tanguar Haor Resort" />
+          <img src="/images/tang3.jpeg" alt="Tanguar Haor Resort" />
         </div>
         <div className="hotel-details">
           <h3>Tanguar Avijatrik: Luxury Houseboat at Haor</h3>
@@ -44,7 +44,7 @@ const TrendingHotels = () => {
 
       <div className="hotel-container">
         <div className="hotel-image">
-          <img src="/images/lake.jpg" alt="Rangamati Resort" />
+          <img src="/images/hotel2.jpg" alt="Rangamati Resort" />
         </div>
         <div className="hotel-details">
           <h3>Lakeshore Resort: Rangamati</h3>
@@ -61,7 +61,7 @@ const TrendingHotels = () => {
 
       <div className="hotel-container">
         <div className="hotel-image">
-          <img src="/images/megh.jpg" alt="Sajek Resort" />
+          <img src="/images/saj2.jpg" alt="Sajek Resort" />
         </div>
         <div className="hotel-details">
           <h3>Meghpolli Resort: Sajek</h3>

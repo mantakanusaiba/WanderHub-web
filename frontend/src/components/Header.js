@@ -3,8 +3,8 @@ import logo from './img/logo.png';
 
 const Header = ({ onNavClick, onLogout }) => {
   const handleLogout = () => {
-    // Call the logout function passed as props
-    if (typeof onLogout === 'function') {
+    const confirmed = window.confirm("Do you want to log out now?");
+    if (confirmed && typeof onLogout === 'function') {
       onLogout();
     }
   };
@@ -17,7 +17,6 @@ const Header = ({ onNavClick, onLogout }) => {
         </div>
         <h1>WanderHub</h1>
         <div className="profile">
-          {/* Change the button to logout button and handle onClick */}
           <button onClick={handleLogout}>Logout</button>
         </div>
       </div>

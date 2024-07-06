@@ -6,11 +6,14 @@ const hotels = [
     name: "Long Beach Hotel Cox's Bazar",
     price: "BDT 8,193/Night",
     location: "14 Kalatoli, Hotel-Motel Zone, Cox's Bazar, Bangladesh",
-    image: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/283183777.jpg?k=899b1542446c88268f790cf9968ddeffe42a7b24c7b228069de09413d5275822&o&hp=1&fbclid=IwAR3XkptKk1NRszdVAMGSRiVyrIeLePTwQDlVXhsHgRzF7RpvwfsfESi0N4w ",
+    image: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/283183777.jpg?k=899b1542446c88268f790cf9968ddeffe42a7b24c7b228069de09413d5275822&o&hp=1&fbclid=IwAR3XkptKk1NRszdVAMGSRiVyrIeLePTwQDlVXhsHgRzF7RpvwfsfESi0N4w",
     stars: "&#9733;&#9733;&#9733;&#9733;&#9733;",
     discount: "19% OFF",
     discountPrice: "BDT 8,193",
-    rooms: ["Single", "Double", "Suite"]
+    rooms: ["Single", "Double", "Suite"],
+    amenities: ["Free WiFi", "Swimming Pool", "Gym", "Spa"],
+    description: "A luxurious beachfront hotel with all modern amenities.",
+    contact: "Phone: +88034152666"
   },
   {
     name: "Tanguar Avijatrik: Luxury Houseboat at Haor",
@@ -20,29 +23,39 @@ const hotels = [
     stars: "&#9733;&#9733;&#9733;&#9733;&#9733;",
     discount: "20% OFF",
     discountPrice: "BDT 6,500",
-    rooms: ["Single", "Double", "Family"]
+    rooms: ["Single", "Double", "Family"],
+    amenities: ["Free Breakfast", "Guided Tours", "Fishing"],
+    description: "Experience luxury on the water with our premium houseboat.",
+    contact: "Phone: +8801712345678"
   },
   {
-    name: "Lakeshore Resort:Rangamati",
+    name: "Lakeshore Resort: Rangamati",
     price: "BDT 6,000/Night",
     location: "Rangamati, Chittagong Hill Tracts, Bangladesh",
     image: "https://api.sharetrip.net/api/v1/hotel/image?key=HyANbffVjkBh1mA2CJLuNFZlI6UkKrgAbXWPt8bqt5XudxSGJg/auh/IeYO9o63FWll2h/tvGridd5Ar9ZmNcGBHCzOR8bvEGn24mVxGMsxV1h7O7MvuzkfzN62hzXC6muvqrg2G9udtXjGhTgVsRA==",
     stars: "&#9733;&#9733;&#9733;&#9733;",
     discount: "20% OFF",
     discountPrice: "BDT 6,000",
-    rooms: ["Single", "Double", "Deluxe"]
+    rooms: ["Single", "Double", "Deluxe"],
+    amenities: ["Lake View", "Boat Rides", "Hiking"],
+    description: "Nestled in the hills, our resort offers breathtaking views and tranquility.",
+    contact: "Phone: +8801812345678"
   },
   {
-    name: "Meghpolli Resort:Sajek",
+    name: "Meghpolli Resort: Sajek",
     price: "BDT 7,200/Night",
     location: "Sajek Valley, Rangamati, Bangladesh",
-    image: " https://static.meghpolli.com/meghpolli/static/assets/img/Bashonti-2.jpg",
+    image: "https://static.meghpolli.com/meghpolli/static/assets/img/Bashonti-2.jpg",
     stars: "&#9733;&#9733;&#9733;&#9733;&#9733;",
     discount: "20% OFF",
     discountPrice: "BDT 7,200",
-    rooms: ["Single", "Double", "Executive"]
+    rooms: ["Single", "Double", "Executive"],
+    amenities: ["Mountain View", "BBQ Facilities", "Trekking"],
+    description: "A serene resort located in the picturesque Sajek Valley.",
+    contact: "Phone: +8801715678910"
   }
 ];
+
 const HotelPage = ({ navigateTo }) => {
   const [searchInput, setSearchInput] = useState('');
   const [filteredHotels, setFilteredHotels] = useState(hotels);

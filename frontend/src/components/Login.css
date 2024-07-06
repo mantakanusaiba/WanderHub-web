@@ -1,99 +1,88 @@
-body.login-page {
-    margin: 10;
-    padding: 10;
-    font-family: 'Arial', sans-serif;
-    background: teal;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-  }
-  
-  .login-form,
-  .forgot-password-form,
-  .reset-password-form {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 10px;
-    padding: 20px;
-    max-width: 400px;
-    width: 100%;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-  
-  .login-form h2,
-  .forgot-password-form h2,
-  .reset-password-form h2 {
-    margin-bottom: 20px;
-    color: #fff;
-  }
-  
-  .login-form input,
-  .forgot-password-form input,
-  .reset-password-form input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 5px;
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
-  }
-  
-  .login-form input::placeholder,
-  .forgot-password-form input::placeholder,
-  .reset-password-form input::placeholder {
-    color: #fff;
-  }
-  
-  .login-form .login-options,
-  .forgot-password-form .login-options,
-  .reset-password-form .login-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 10px 0;
-    color: #fff;
-  }
-  
-  .login-form .login-options a,
-  .forgot-password-form .login-options a,
-  .reset-password-form .login-options a {
-    color: #fff;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  
-  .login-form button,
-  .forgot-password-form button,
-  .reset-password-form button {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
-    cursor: pointer;
-    margin: 10px 0;
-  }
-  
-  .login-form p,
-  .forgot-password-form p,
-  .reset-password-form p {
-    color: #fff;
-    cursor: pointer;
-  }
-  
-  .login-form p span {
-    color: #00d4ff;
-    cursor: pointer;
-  }
+/* Login.css */
+
+login.body {
+  font-family: Arial, sans-serif;
+  background-color: rgb(139, 164, 246);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+login.auth-container {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+login.auth-container h2 {
+  margin-bottom: 1.5rem;
+}
+
+login.form-group {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+login.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+login.form-group input {
+  width: calc(100% - 1rem);
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+login.form-group button {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+login.form-group button:hover {
+  background-color: #0056b3;
+}
+
+login.error {
+  color: red;
+  margin-top: 1rem;
+}
+
+login.auth-container p {
+  margin-top: 1.5rem;
+}
+
+login.auth-container span {
+  color: #007bff;
+  cursor: pointer;
+}
+
+login.auth-container span:hover {
+  text-decoration: underline;
+}
+
+.welcome-message {
+  position: absolute;
+  top: 10px;  /* Adjusted to move the text up */
+  text-align: center;
+  width: 100%;
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
