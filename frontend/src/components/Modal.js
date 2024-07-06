@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 
 const Modal = ({ selectedHotel }) => {
@@ -9,8 +8,6 @@ const Modal = ({ selectedHotel }) => {
     document.getElementById('hotelModal').style.display = 'none';
   };
 
-  
-   
 };
 
 export default Modal;
