@@ -126,3 +126,22 @@
     border-radius: 3px;
     cursor: pointer;
   }
+  .hotel-image-container {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .hotel-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .hotel-extra-details {
+    margin-top: 20px;
+  }
+  
+  .room-selection {
+    margin-top: 20px;
+  }
+  

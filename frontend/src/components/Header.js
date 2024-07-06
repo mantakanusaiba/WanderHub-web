@@ -5,7 +5,10 @@ const Header = ({ onNavClick, onLogout }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const handleLogout = () => {
-    if (typeof onLogout === 'function') {
+    const confirmed = window.confirm("Do you want to log out now?");
+    if (confirmed && typeof onLogout === 'function') {
+     
+
       onLogout();
     }
   };
@@ -22,6 +25,8 @@ const Header = ({ onNavClick, onLogout }) => {
         </div>
         <h1 style={{ fontSize: '30px', margin:'10' }}>WanderHub</h1> {}
         <div className="profile">
+
+          
           <button onClick={handleLogout} style={{ backgroundColor: '#1496a5', color: '#fff', border: 'none', padding: '10px', borderRadius: '4px', cursor: 'pointer', fontSize: '16px' }}>Logout</button>
         </div>
       </div>

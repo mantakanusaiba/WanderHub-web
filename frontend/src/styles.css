@@ -158,6 +158,7 @@ border-radius: 8px;
 
 .pic-container p {
 
+
 font-size: 16px;
 color: #7680ee;
 }
@@ -189,7 +190,7 @@ margin-bottom: 35px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 40px;
   max-width: 600px;
-  width: 100%;
+  width: 100;
   margin: auto;
 }
 
