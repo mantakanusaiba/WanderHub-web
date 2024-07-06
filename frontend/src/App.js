@@ -69,11 +69,41 @@ const App = () => {
           <BookingForm hotel={selectedHotel} room={selectedRoom} />
         );
       case 'why':
-        return <div>Why WanderHub?</div>;
+        return (
+          <section className="content-section">
+            <h2>Why WanderHub?</h2>
+            <ul>
+              <li>Personalized travel experiences tailored to your preferences.</li>
+              <li>Diverse destinations and accommodations to suit every traveler.</li>
+              <li>Passionate about creating memorable journeys for adventurers.</li>
+              <li>Commitment to seamless travel with dedicated support.</li>
+            </ul>
+          </section>
+        );
       case 'faq':
-        return <div>FAQ</div>;
+        return (
+          <section className="content-section">
+            <h2>FAQ</h2>
+            <ul>
+              <li>What types of accommodations does WanderHub offer?</li>
+              <li>How can I contact customer support for assistance?</li>
+              <li>Do you provide travel insurance options?</li>
+              <li>Can I modify or cancel my booking?</li>
+            </ul>
+          </section>
+        );
       case 'about':
-        return <div>About</div>;
+        return (
+          <section className="content-section">
+            <h2>About WanderHub</h2>
+            <ul>
+              <li>Connecting travelers with exceptional destinations worldwide.</li>
+              <li>Driven by a passion for exploration and discovery.</li>
+              <li>Creating lasting memories through curated travel experiences.</li>
+              <li>Learn more about our mission to redefine travel.</li>
+            </ul>
+          </section>
+        );
       default:
         return <div>Page not found</div>;
     }
@@ -81,7 +111,7 @@ const App = () => {
 
   return (
     <div>
-      {currentPage !== 'login' && <Header onNavClick={navigateTo} onLogout={handleLogout} />}
+      {currentPage !== 'login' && currentPage !== 'register' && <Header onNavClick={navigateTo} onLogout={handleLogout} />}
       {renderContent()}
     </div>
   );
