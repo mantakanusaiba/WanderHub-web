@@ -9,13 +9,13 @@ const userRoutes = require('./routes/userRoutes');
 
 dotenv.config();
 
-console.log(MONGO_URI: ${process.env.MONGO_URI}); // Log MONGO_URI
+console.log(`MONGO_URI: ${process.env.MONGO_URI}`); // Log MONGO_URI
 
 connectDB();
 
 app.use(cors(
     {
-      origin:[""],
+      origin:["https://wanderhubfront-ten.vercel.app"],
       methods: ["POST","GET"],
       credentials: true
     }
@@ -30,4 +30,4 @@ app.get("/", (req, res) => {
 app.use('/api/users', userRoutes);
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(Server running on port ${PORT}));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
