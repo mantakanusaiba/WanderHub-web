@@ -7,17 +7,22 @@ require('dotenv').config();
 
 const router = express.Router();
 
+// Helper function to generate tokens
+const generateTokens = (user) => {
+  const accessToken = jwt.sign({ user: { id: user.id } }, process.env.JWT_SECRET, { expiresIn: '1h' });
+  const refreshToken = jwt.sign({ user: { id: user.id } }, process.env.JWT_REFRESH_SECRET, { expiresIn: '7d' });
+  return { accessToken, refreshToken };
+};
+
 // Register user
 router.post('/register', async (req, res) => {
   const { name, email, password } = req.body;
   try {
-    // Check if user already exists
     let user = await User.findOne({ email });
     if (user) {
       return res.status(400).json({ message: 'User already exists' });
     }
 
-    // Hash password before saving in database
     const hashedPassword = await bcrypt.hash(password, 10);
     user = new User({
       name,
@@ -26,7 +31,9 @@ router.post('/register', async (req, res) => {
     });
 
     await user.save();
-    res.status(201).json({ message: 'User registered successfully' });
+    const tokens = generateTokens(user);
+
+    res.status(201).json({ message: 'User registered successfully', accessToken: tokens.accessToken, refreshToken: tokens.refreshToken });
   } catch (error) {
     console.error('Error registering user:', error);
     res.status(500).json({ message: 'Server error' });
@@ -37,29 +44,18 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
   try {
-    // Check if user exists
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
-    // Validate password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
-    // Create JWT token
-    const payload = {
-      user: {
-        id: user.id,
-      },
-    };
-
-    jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' }, (err, token) => {
-      if (err) throw err;
-      res.json({ token });
-    });
+    const tokens = generateTokens(user);
+    res.json({ accessToken: tokens.accessToken, refreshToken: tokens.refreshToken });
   } catch (error) {
     console.error('Error logging in user:', error);
     res.status(500).json({ message: 'Server error' });
@@ -69,7 +65,6 @@ router.post('/login', async (req, res) => {
 // Example protected route (fetch user details)
 router.get('/user', authMiddleware, async (req, res) => {
   try {
-    // Fetch user details based on authenticated user (req.user.id)
     const user = await User.findById(req.user.id).select('-password');
     res.json(user);
   } catch (error) {
