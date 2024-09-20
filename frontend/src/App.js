@@ -4,7 +4,7 @@ import VideoBackground from './components/VideoBackground';
 import Explore from './components/Explore';
 import TrendingHotels from './components/TrendingHotels';
 import Modal from './components/Modal';
-import HolidayPage from './components/HolidayPage';
+import HolidayPage from './components/HolidayPage'; 
 import HotelPage from './components/HotelPage';
 import HotelDetails from './components/HotelDetails';
 import BookingForm from './components/BookingForm';
@@ -12,12 +12,14 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Profile from './components/Profile';
 import Footer from './components/Footer'; 
+import TourForm from './components/TourForm';
 import './styles.css';
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState('login');
   const [selectedHotel, setSelectedHotel] = useState(null);
   const [selectedRoom, setSelectedRoom] = useState('');
+  const [selectedPackage, setSelectedPackage] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -28,9 +30,10 @@ const App = () => {
     }
   }, []);
 
-  const navigateTo = (page, hotel = null, room = '') => {
+  const navigateTo = (page, hotel = null, room = '', pkg = null) => {
     setSelectedHotel(hotel);
     setSelectedRoom(room);
+    setSelectedPackage(pkg);
     setCurrentPage(page);
   };
 
@@ -49,13 +52,13 @@ const App = () => {
         return (
           <>
             <VideoBackground />
-            <Explore />
+            <Explore navigateTo={navigateTo} />
             <TrendingHotels navigateTo={navigateTo} />
             <Modal />
           </>
         );
       case 'holiday':
-        return <HolidayPage />;
+        return <HolidayPage navigateTo={navigateTo} />;
       case 'hotel':
         return <HotelPage navigateTo={navigateTo} />;
       case 'details':
@@ -69,6 +72,15 @@ const App = () => {
       case 'booking':
         return selectedHotel && selectedRoom && (
           <BookingForm hotel={selectedHotel} room={selectedRoom} />
+        );
+      case 'tourForm':
+        return selectedPackage && (
+          <TourForm
+            packageId={selectedPackage._id}
+            packageName={selectedPackage.name}
+            onBookingComplete={() => navigateTo('holiday')}
+            navigateTo={navigateTo}
+          />
         );
       case 'why':
         return (
