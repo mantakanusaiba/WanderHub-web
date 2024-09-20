@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './HolidayPage.css';
 
-const HolidayPage = () => {
+const HolidayPage = ({ navigateTo }) => {
   const initialFilters = {
     range: 20000,
     duration: 0,
@@ -14,7 +14,6 @@ const HolidayPage = () => {
   const [filteredPackages, setFilteredPackages] = useState([]);
 
   useEffect(() => {
-    // Fetch holiday packages from the server without filters
     const fetchPackages = async () => {
       try {
         const response = await fetch('http://localhost:5000/api/holiday-packages/get-all-holiday-packages', {
@@ -74,28 +73,10 @@ const HolidayPage = () => {
     }
   };
 
-  const registerNow = async (packageId) => {
-    try {
-      const response = await fetch(`http://localhost:5000/api/registration/${packageId}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-        body: JSON.stringify({ packageId }),
-      });
-  
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-  
-      alert('Registration is successful!');
-    } catch (error) {
-      console.error('Error in registration:', error);
-      alert('Failed to register. Please try again later.');
-    }
+  const bookNow = (pkg) => {
+    navigateTo('tourForm', null, '', pkg);
   };
-  
+
   return (
     <div className="holiday-page">
       <div className="sidebar">
@@ -165,7 +146,7 @@ const HolidayPage = () => {
                 <h3>{pkg.name}</h3>
                 <p>{pkg.description}</p>
                 <p>Price: Tk{pkg.price}</p>
-                <button onClick={() => registerNow(pkg._id)}>Register Now</button>
+                <button onClick={() => bookNow(pkg)}>Book Now</button>
               </div>
             ))
           ) : (
