@@ -2,11 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './Login.css';
 
-
-const API_URL = 'https://wander-hub-webapi.vercel.app/api/users';
-
-// Set Axios default withCredentials to true
-axios.defaults.withCredentials = true;
+const API_URL = 'http://localhost:5000/api/users';
 
 const Login = ({ navigateTo }) => {
   const [email, setEmail] = useState('');

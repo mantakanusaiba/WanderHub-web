@@ -7,8 +7,6 @@ const Header = ({ onNavClick, onLogout }) => {
   const handleLogout = () => {
     const confirmed = window.confirm("Do you want to log out now?");
     if (confirmed && typeof onLogout === 'function') {
-     
-
       onLogout();
     }
   };
@@ -23,10 +21,9 @@ const Header = ({ onNavClick, onLogout }) => {
         <div className="logo-container">
           <img src={logo} alt="WanderHub Logo" className="logo" style={{ width: '80px', height: 'auto' }} />
         </div>
-        <h1 style={{ fontSize: '30px', margin:'10' }}>WanderHub</h1> {}
+        <h1 style={{ fontSize: '30px', margin: '10' }}>WanderHub</h1> {}
         <div className="profile">
-
-          
+          <button onClick={() => onNavClick('profile')} style={{ backgroundColor: '#1496a5', color: '#fff', border: 'none', padding: '10px', borderRadius: '4px', cursor: 'pointer', fontSize: '16px', marginRight: '10px' }}>My Profile</button>
           <button onClick={handleLogout} style={{ backgroundColor: '#1496a5', color: '#fff', border: 'none', padding: '10px', borderRadius: '4px', cursor: 'pointer', fontSize: '16px' }}>Logout</button>
         </div>
       </div>
