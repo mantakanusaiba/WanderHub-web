@@ -14,7 +14,7 @@ const HotelPage = ({ navigateTo }) => {
     setError('');
 
     try {
-      const response = await axios.get('http://localhost:5000/api/hotels/hotels', {
+      const response = await axios.get('https://wander-hub-webapi.vercel.app/api/hotels/hotels', {
         params: {
           search: searchInput,
           page: 1,
