@@ -17,7 +17,7 @@ const BookingForm = ({ hotel, room }) => {
     };
   
     try {
-      const response = await fetch('https://wander-hub-webapi.vercel.app/api/bookings', { // Updated the URL to include the correct port
+      const response = await fetch('https://wander-hub-webback.vercel.app/api/bookings', { // Updated the URL to include the correct port
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

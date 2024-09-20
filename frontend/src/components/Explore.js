@@ -9,7 +9,7 @@ const Explore = ({ navigateTo }) => {
   useEffect(() => {
     const fetchTours = async () => {
       try {
-        const response = await axios.get('https://wander-hub-webapi.vercel.app/api/tours/get-all-tours');
+        const response = await axios.get('https://wander-hub-webback.vercel.app/api/tours/get-all-tours');
         setTours(response.data.data);
       } catch (error) {
         console.error('Error fetching tours:', error);

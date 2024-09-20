@@ -7,7 +7,7 @@ const TrendingHotels = () => {
   useEffect(() => {
     const fetchHotels = async () => {
       try {
-        const response = await axios.get('https://wander-hub-webapi.vercel.app/api/trends');
+        const response = await axios.get('https://wander-hub-webback.vercel.app/api/trends');
         setHotels(response.data);
       } catch (error) {
         console.error('Error fetching hotels:', error);

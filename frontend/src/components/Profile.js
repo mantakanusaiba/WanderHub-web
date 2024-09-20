@@ -11,7 +11,7 @@ const Profile = () => {
       try {
         const token = localStorage.getItem('token');
         if (token) {
-          const response = await axios.get('https://wander-hub-webapi.vercel.app/api/users/user', {
+          const response = await axios.get('https://wander-hub-webback.vercel.app/api/users/user', {
             headers: {
               Authorization: `Bearer ${token}`,
             },
