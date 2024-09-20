@@ -1,6 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import './Explore.css';
 
-const Explore = () => {
+const Explore = ({ navigateTo }) => {
+  const [tours, setTours] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchTours = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/tours/get-all-tours');
+        setTours(response.data.data);
+      } catch (error) {
+        console.error('Error fetching tours:', error);
+        setError('Error fetching tours. Please try again later.');
+      }
+    };
+
+    fetchTours();
+  }, []);
+
+  if (error) {
+    return <div>Error fetching tours: {error}</div>;
+  }
+
   return (
     <section id="explore">
       <div id="explore-heading">
@@ -8,41 +31,18 @@ const Explore = () => {
         <p>Plan your next adventure to stunning destinations.</p>
       </div>
       <div className="row">
-        <div
-          className="pic-container"
-          style={{ backgroundImage: "url('images/cox.jpg')" }}
-          onClick={() => window.location.href='beach.html'}
-        >
-          <h3>&nbsp;Beach Bonanza: 3-Day Tropical Adventure in Cox's Bazar</h3>
-        </div>
-        <div
-          className="pic-container"
-          style={{ backgroundImage: "url('images/haor.jpeg')" }}
-          onClick={() => window.location.href='bird.html'}
-        >
-          <h3>&nbsp;Birdwatcher's Bliss: 3-Day Adventure in Tanguar Haor</h3>
-        </div>
-      </div>
-      <div className="row">
-        <div
-          className="pic-container1"
-          style={{ backgroundImage: "url('images/rangamati.jpg')" }}
-          onClick={() => window.location.href='marine.html'}
-        >
-          <h3>Marine Magic: 7-Day Coastal Adventure in Cox's Bazar</h3>
-        </div>
-        <div
-          className="pic-container1"
-          style={{ backgroundImage: "url('images/bandarban.jpg')" }}
-        >
-          <h3>Valley of Dreams: Discover the Beauty of Bandarban</h3>
-        </div>
-        <div
-          className="pic-container1"
-          style={{ backgroundImage: "url('images/sajek.jpeg')" }}
-        >
-          <h3>Clouds and Peaks: Heights of Sajek</h3>
-        </div>
+        {tours.map((tour) => (
+          <div
+            key={tour._id}
+            className="pic-container"
+            style={{ backgroundImage: `url(${tour.imageUrl})` }}
+          >
+            <h3>&nbsp;{tour.title}</h3>
+            <button className="book-now-btn" onClick={() => navigateTo('tourForm', null, '', tour)}>
+              Book Now
+            </button>
+          </div>
+        ))}
       </div>
     </section>
   );
