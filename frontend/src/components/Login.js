@@ -19,6 +19,7 @@ const Login = ({ navigateTo }) => {
 
       console.log('Login successful:', response.data);
       localStorage.setItem('token', response.data.accessToken);
+       localStorage.setItem('refreshToken', response.data.refreshToken);
       console.log('Access Token:', response.data.accessToken);
       console.log('Refresh Token:', response.data.refreshToken); 
       navigateTo('home');
