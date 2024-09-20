@@ -20,15 +20,15 @@ const Register = ({ navigateTo }) => {
       const response = await axios.post(`${API_URL}/register`, { name, email, password });
       console.log('Registration response:', response.data);
 
-      // Check for successful registration message
       if (response.data.message === 'User registered successfully') {
+        console.log('Access Token:', response.data.accessToken);
+        console.log('Refresh Token:', response.data.refreshToken); // Display refresh token
         navigateTo('login');
       } else {
-        // Handle specific error messages from backend (if provided)
-        setError(response.data.message || 'Registration failed'); // Use backend error message if available
+        setError(response.data.message || 'Registration failed');
       }
     } catch (err) {
-      console.error('Registration error:', err.response); // Log entire response object for debugging
+      console.error('Registration error:', err.response);
       setError('Registration failed. Check server logs for details.');
     }
   };

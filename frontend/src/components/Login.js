@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './Login.css';
 
-// Use the provided API URL as link
+
 const API_URL = 'https://wander-hub-webapi.vercel.app/api/users';
 
 // Set Axios default withCredentials to true
@@ -18,8 +18,11 @@ const Login = ({ navigateTo }) => {
     try {
       console.log('Attempting to log in user:', { email, password });
       const response = await axios.post(`${API_URL}/login`, { email, password });
+
       console.log('Login successful:', response.data);
-      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('token', response.data.accessToken);
+      console.log('Access Token:', response.data.accessToken);
+      console.log('Refresh Token:', response.data.refreshToken); // Display refresh token
       navigateTo('home');
     } catch (err) {
       console.error('Login error:', err.response ? err.response.data : err.message);

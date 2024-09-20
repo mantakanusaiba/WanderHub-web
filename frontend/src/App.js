@@ -10,6 +10,8 @@ import HotelDetails from './components/HotelDetails';
 import BookingForm from './components/BookingForm';
 import Login from './components/Login';
 import Register from './components/Register';
+import Profile from './components/Profile';
+import Footer from './components/Footer'; 
 import TourForm from './components/TourForm';
 import './styles.css';
 
@@ -116,6 +118,8 @@ const App = () => {
             </ul>
           </section>
         );
+      case 'profile':
+        return <Profile />;
       default:
         return <div>Page not found</div>;
     }
@@ -125,6 +129,7 @@ const App = () => {
     <div>
       {currentPage !== 'login' && currentPage !== 'register' && <Header onNavClick={navigateTo} onLogout={handleLogout} />}
       {renderContent()}
+      {currentPage !== 'login' && currentPage !== 'register' && <Footer />} {/* Conditionally render Footer */}
     </div>
   );
 };
