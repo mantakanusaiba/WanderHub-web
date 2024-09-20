@@ -38,7 +38,7 @@ const TrendingHotels = () => {
               <p className="discount-price">BDT {hotel.discountPrice}/Night <span className="discount">{hotel.discount}% OFF</span></p>
               <p className="price-includes">*Price includes VAT & Tax</p>
             </div>
-            <button className="book-now" data-hotel={hotel.name}>BOOK NOW</button>
+      
           </div>
         </div>
       ))}
