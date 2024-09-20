@@ -1,121 +1,259 @@
 body {
-    font-family: cursive;
-    margin: 0;
-    padding: 0;
+  font-family: cursive;
+  margin: 0;
+  padding: 0;
 }
 
 header {
-    background-color: #f0f0f0;
-    padding: 20px 0;
+  background-color: #f0f0f0;
+  padding: 20px 0;
 }
 
 .top-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 30px;
-    background-color: #f0f0f0;
-    font-family: cursive;
-    color: #1496a5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  background-color: #f0f0f0;
+  color: #1496a5;
 }
 
 button {
-    background-color: #1496a5;
-    color: white;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
+  background-color: #1496a5;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top:5px;
+  margin-right: 5px;
+
 }
 
 #tour {
-    padding: 20px;
-    display: flex;
+  padding: 20px;
+  display: flex;
+}
+
+.holiday-page {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding: 20px;
 }
 
 .sidebar {
-    width: 250px;
-    padding: 30px;
-    background-color: #f4f4f4;
-    margin-right: 20px;
+  width: 300px;
+  padding: 40px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-right: 30px;
+}
+
+.packages-container {
+  flex: 1;
+  margin-left: 10px;
 }
 
 .tour-packages {
-    padding: 30px;
-    flex: 3;
-    display: flex;
-    flex-wrap: wrap; 
-    gap: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .tour-package {
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 8px;
-    width: calc(50% - 35px); 
-    height: 350px;
-    box-sizing: border-box;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    overflow: hidden;
-    color: white;
+  width: calc(30% - 10px);
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin-bottom: 20px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  color: white;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.tour-package h3 {
+  position: absolute;
+  margin-top: 0;
+  padding: 5px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+  border-radius: 5px;
+}
+
+.tour-package p {
+  margin-top: 50px;
+  padding: 5px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
 }
 
 .reset-button {
-    background-color: #1496a5;
-    color: white;
-    border: none;
-    padding: 10px;
-    width: 100%;
-    cursor: pointer;
-    margin-bottom: 20px;
+  background-color: #1496a5;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.no-results {
+  text-align: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.tour-form-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.tour-form label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.tour-form input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.tour-form button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #1496a5;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.1s ease;
+}
+
+.tour-form button:hover {
+  background-color: #117a8b;
+}
+
+.back-button {
+  background-color: #ff6347;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 20px;
+ 
 }
 
 
 
-.holiday-page {
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    padding: 20px;
-  }
+.chart {
+  width: 45%;
+  min-width: 300px;
+  margin: 10px;
+}
+
+
+.tour-form-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1px;
+  padding: 20px;
+}
+
+.tour-form {
+  max-width: 380px;
+  width: 40%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+.tour-form h2 {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.tour-form form {
+  display: flex;
+  flex-direction: column;
   
-  .sidebar {
-    width: 300px;
-    padding: 20px;
-    background-color: #f0f0f0;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .packages-container {
-    flex: 1;
-    margin-left: 20px;
-  }
-  
-  .tour-packages {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  
-  .tour-package {
-    width: calc(50% - 10px);
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .tour-package h3 {
-    margin-top: 0;
-  }
-  
-  .no-results {
-    text-align: center;
-    width: 100%;
-    margin-top: 20px;
-  }
-  
+}
+
+.bookings-and-chart {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+}
+
+.bookings-list {
+  flex: 1;
+  margin-right: 10px;
+  margin-left: -50px;
+  max-width: 400px;
+}
+
+
+.bookings-list h3, .chart-container h3 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.bookings-list ul {
+  list-style-type: none;
+  padding: 35px;
+}
+
+.bookings-list li {
+  padding: 7px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #fff;
+}
+
+.chart-container canvas {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.chart-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  max-width: 300px; 
+  margin: 0 auto;
+  gap: 30px; 
+}
+
+#bookingsBarChart {
+  width: 100% !important; 
+  height: auto !important; 
+}
+#bookingsPieChart {
+  width: 100% !important;
+  max-width: 300px;  
+  height: 300px !important;  
+ 
+}
+
+
+button.edit-button,
+button.delete-button {
+  padding: 5px 10px; 
+  font-size: 14px;  
+  border-radius: 3px;
+  cursor: pointer;
+}
