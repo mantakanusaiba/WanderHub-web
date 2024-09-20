@@ -23,7 +23,7 @@ connectDB();
 
 app.use(cors(
     {
-      origin:["https://wander-hub-web-p1c7.vercel.app"],
+      origin:["https://wander-hub-web-p1c7.vercel.app/"],
       methods: ["POST","GET"],
       credentials: true
     }
