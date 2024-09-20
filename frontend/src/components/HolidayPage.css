@@ -25,6 +25,9 @@ button {
   border: none;
   cursor: pointer;
   border-radius: 5px;
+  margin-top:5px;
+  margin-right: 5px;
+
 }
 
 #tour {
@@ -60,11 +63,11 @@ button {
 }
 
 .tour-package {
-  width: calc(60% - 10px);
+  width: calc(30% - 10px);
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  padding: 10px;
   margin-bottom: 20px;
   background-size: cover;
   background-position: center;
@@ -72,10 +75,23 @@ button {
   overflow: hidden;
   color: white;
   height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .tour-package h3 {
+  position: absolute;
   margin-top: 0;
+  padding: 5px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+  border-radius: 5px;
+}
+
+.tour-package p {
+  margin-top: 50px;
+  padding: 5px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
 }
 
 .reset-button {
@@ -92,4 +108,152 @@ button {
   text-align: center;
   width: 100%;
   margin-top: 20px;
+}
+
+.tour-form-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.tour-form label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.tour-form input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.tour-form button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #1496a5;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.1s ease;
+}
+
+.tour-form button:hover {
+  background-color: #117a8b;
+}
+
+.back-button {
+  background-color: #ff6347;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 20px;
+ 
+}
+
+
+
+.chart {
+  width: 45%;
+  min-width: 300px;
+  margin: 10px;
+}
+
+
+.tour-form-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1px;
+  padding: 20px;
+}
+
+.tour-form {
+  max-width: 380px;
+  width: 40%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+.tour-form h2 {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.tour-form form {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.bookings-and-chart {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+}
+
+.bookings-list {
+  flex: 1;
+  margin-right: 10px;
+  margin-left: -50px;
+  max-width: 400px;
+}
+
+
+.bookings-list h3, .chart-container h3 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.bookings-list ul {
+  list-style-type: none;
+  padding: 35px;
+}
+
+.bookings-list li {
+  padding: 7px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #fff;
+}
+
+.chart-container canvas {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.chart-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  max-width: 300px; 
+  margin: 0 auto;
+  gap: 30px; 
+}
+
+#bookingsBarChart {
+  width: 100% !important; 
+  height: auto !important; 
+}
+#bookingsPieChart {
+  width: 100% !important;
+  max-width: 300px;  
+  height: 300px !important;  
+ 
+}
+
+
+button.edit-button,
+button.delete-button {
+  padding: 5px 10px; 
+  font-size: 14px;  
+  border-radius: 3px;
+  cursor: pointer;
 }
