@@ -20,14 +20,14 @@ dotenv.config();
 console.log(`MONGO_URI: ${process.env.MONGO_URI}`); // Log MONGO_URI
 
 connectDB();
-app.use(cors());
-/*app.use(cors(
+
+app.use(cors(
     {
       origin:["https://wander-hub-web-front.vercel.app"],
       methods: ["POST","GET"],
       credentials: true
     }
-));*/
+));
 app.use(express.json());
 
 // Root route
