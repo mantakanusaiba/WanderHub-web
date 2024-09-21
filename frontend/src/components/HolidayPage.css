@@ -25,9 +25,8 @@ button {
   border: none;
   cursor: pointer;
   border-radius: 5px;
-  margin-top:5px;
+  margin-top: 5px;
   margin-right: 5px;
-
 }
 
 #tour {
@@ -43,7 +42,7 @@ button {
 }
 
 .sidebar {
-  width: 300px;
+  width: 100%;
   padding: 40px;
   background-color: #f4f4f4;
   border-radius: 8px;
@@ -112,68 +111,15 @@ button {
 
 .tour-form-container {
   display: flex;
-  justify-content: space-between;
-  padding: 10px;
-}
-
-.tour-form label {
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.tour-form input {
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 100%;
-}
-
-.tour-form button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  background-color: #1496a5;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.1s ease;
-}
-
-.tour-form button:hover {
-  background-color: #117a8b;
-}
-
-.back-button {
-  background-color: #ff6347;
-  color: white;
-  padding: 10px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  margin-bottom: 20px;
- 
-}
-
-
-
-.chart {
-  width: 45%;
-  min-width: 300px;
-  margin: 10px;
-}
-
-
-.tour-form-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 1px;
+  justify-content: center; 
+  align-items: center;
+  flex-wrap: wrap;
   padding: 20px;
 }
 
 .tour-form {
   max-width: 380px;
-  width: 40%;
+  width: 100%;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -188,22 +134,20 @@ button {
 .tour-form form {
   display: flex;
   flex-direction: column;
-  
 }
 
 .bookings-and-chart {
   display: flex;
   justify-content: space-between;
-  width: 60%;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .bookings-list {
   flex: 1;
   margin-right: 10px;
-  margin-left: -50px;
-  max-width: 400px;
+  max-width: 50%;
 }
-
 
 .bookings-list h3, .chart-container h3 {
   text-align: center;
@@ -242,13 +186,12 @@ button {
   width: 100% !important; 
   height: auto !important; 
 }
+
 #bookingsPieChart {
   width: 100% !important;
   max-width: 300px;  
   height: 300px !important;  
- 
 }
-
 
 button.edit-button,
 button.delete-button {
@@ -256,4 +199,43 @@ button.delete-button {
   font-size: 14px;  
   border-radius: 3px;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+  .tour-form-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .tour-form {
+    width: 90%;
+  }
+
+  .bookings-and-chart {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .bookings-list {
+    max-width: 90%;
+    margin-left: 0;
+  }
+
+  .chart-container {
+    width: 100%;
+    max-width: 90%;
+  }
+
+  .tour-package {
+    width: 100%;
+    height: auto;
+  }
+
+  .top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
 }
