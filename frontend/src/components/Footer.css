@@ -5,7 +5,6 @@
     padding: 20px;
     text-align: center;
   }
-  
   .footer-content {
     max-width: 1200px;
     margin: 0 auto;
@@ -32,7 +31,6 @@
   .footer-links a:hover {
     text-decoration: underline;
   }
-  
   .footer-info {
     margin-top: 20px;
     text-align: left;
