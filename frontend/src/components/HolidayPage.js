@@ -16,7 +16,7 @@ const HolidayPage = ({ navigateTo }) => {
   useEffect(() => {
     const fetchPackages = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/holiday-packages/get-all-holiday-packages', {
+        const response = await fetch('https://wander-hub-webback.vercel.app/api/holiday-packages/get-all-holiday-packages', {
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -55,7 +55,7 @@ const HolidayPage = ({ navigateTo }) => {
         destination: filters.destination,
       });
 
-      const response = await fetch(`http://localhost:5000/api/holiday-packages/get-holiday-packages?${queryParams.toString()}`, {
+      const response = await fetch(`https://wander-hub-webback.vercel.app/api/holiday-packages/get-holiday-packages?${queryParams.toString()}`, {
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',

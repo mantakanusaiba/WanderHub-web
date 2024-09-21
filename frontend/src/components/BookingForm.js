@@ -6,7 +6,7 @@ const BookingForm = ({ hotel, room }) => {
   const [phone, setPhone] = useState('');
   const [bookings, setBookings] = useState([]);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const newBooking = {
       hotel: hotel.name,
@@ -15,24 +15,31 @@ const BookingForm = ({ hotel, room }) => {
       age,
       phone,
     };
-    setBookings([...bookings, newBooking]);
-    setName('');
-    setAge('');
-    setPhone('');
+  
+    try {
+      const response = await fetch('https://wander-hub-webback.vercel.app/api/bookings', { // Updated the URL to include the correct port
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newBooking),
+      });
+  
+      if (response.ok) {
+        const result = await response.text();
+        console.log(result); // Booking saved successfully
+        setBookings([...bookings, newBooking]);
+        setName('');
+        setAge('');
+        setPhone('');
+      } else {
+        console.error('Error saving booking');
+      }
+    } catch (error) {
+      console.error('Network error:', error);
+    }
   };
-
-  const handleDelete = (index) => {
-    const updatedBookings = bookings.filter((_, i) => i !== index);
-    setBookings(updatedBookings);
-  };
-
-  const handleEdit = (index) => {
-    const bookingToEdit = bookings[index];
-    setName(bookingToEdit.name);
-    setAge(bookingToEdit.age);
-    setPhone(bookingToEdit.phone);
-    handleDelete(index);
-  };
+  
 
   return (
     <div className="booking-form">
@@ -81,7 +88,6 @@ const BookingForm = ({ hotel, room }) => {
                 <th>Name</th>
                 <th>Age</th>
                 <th>Phone</th>
-                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -92,10 +98,6 @@ const BookingForm = ({ hotel, room }) => {
                   <td>{booking.name}</td>
                   <td>{booking.age}</td>
                   <td>{booking.phone}</td>
-                  <td>
-                    <button onClick={() => handleEdit(index)}>Edit</button>
-                    <button onClick={() => handleDelete(index)}>Delete</button>
-                  </td>
                 </tr>
               ))}
             </tbody>

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-// Use the provided API URL
-const API_URL = 'https://wander-hub-webapi.vercel.app/api/users';
+const API_URL = 'https://wander-hub-webback.vercel.app/api/users';
 
 // Set Axios default withCredentials to true
 axios.defaults.withCredentials = true;

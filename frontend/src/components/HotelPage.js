@@ -1,93 +1,94 @@
-const express = require('express');
-const router = express.Router();
-const Hotel = require('../models/hotel');
+import React, { useState } from 'react';
+import axios from 'axios';
+import './HotelPage.css';
 
-// Get hotels with pagination, search, sorting, and filtering
-router.get('/hotels', async (req, res) => {
-  try {
-    const page = parseInt(req.query.page) - 1 || 0;
-    const limit = parseInt(req.query.limit) || 5;
-    const search = req.query.search || '';
-    let sort = req.query.sort || 'name';
-    let roomType = req.query.roomType || 'All';
-    let amenitiesFilter = req.query.amenities ? req.query.amenities.split(',') : [];
+const HotelPage = ({ navigateTo }) => {
+  const [searchInput, setSearchInput] = useState('');
+  const [filteredHotels, setFilteredHotels] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-    const roomTypeOptions = ['Single', 'Double', 'Suite', 'Family', 'Executive'];
-    const amenitiesOptions = ['Free WiFi', 'Swimming Pool', 'Gym', 'Spa', 'Free Breakfast', 'Guided Tours', 'Fishing', 'Lake View', 'Boat Rides', 'Hiking', 'Mountain View', 'BBQ Facilities', 'Trekking'];
+  const handleSearch = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+    setError('');
 
-    roomType === 'All' ? (roomType = [...roomTypeOptions]) : (roomType = req.query.roomType.split(','));
-
-    let sortBy = {};
-    if (sort.includes(',')) {
-      const sortArray = sort.split(',');
-      sortBy[sortArray[0]] = sortArray[1] === 'desc' ? -1 : 1;
-    } else {
-      sortBy[sort] = 1;
+    try {
+      const response = await axios.get('https://wander-hub-webback.vercel.app/api/hotels/hotels', {
+        params: {
+          search: searchInput,
+          page: 1,
+          limit: 10,
+        },
+      });
+      setFilteredHotels(response.data.hotels);
+    } catch (err) {
+      console.error(err);
+      setError(err.response?.data?.message || 'Error fetching hotels. Please try again.');
+    } finally {
+      setLoading(false);
     }
+  };
 
-    const filterQuery = {
-      name: { $regex: search, $options: 'i' },
-      rooms: { $in: roomType },
-      ...(amenitiesFilter.length && { amenities: { $all: amenitiesFilter } })
-    };
+  return (
+    <div className="hotel-page">
+      <header>
+        {/* Add your header content here */}
+      </header>
+      <main>
+        <section className="welcome-section">
+          <h2>Search hotels.</h2>
+          <p>Explore luxurious hotels and accommodations.</p>
+        </section>
+        <section className="search-section">
+          <form id="searchForm" onSubmit={handleSearch}>
+            <div className="form-group">
+              <label htmlFor="to">Hotel Name</label>
+              <input
+                type="text"
+                id="to"
+                placeholder="Hotel Name"
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <button type="submit">Search</button>
+            </div>
+          </form>
+          <div id="searchResults" className="search-results">
+            {loading ? (
+              <p>Loading...</p>
+            ) : error ? (
+              <p>{error}</p>
+            ) : filteredHotels.length > 0 ? (
+              filteredHotels.map((hotel, index) => (
+                <div key={index} className="hotel-container">
+                  <div className="hotel-image">
+                    <img src={hotel.image} alt={hotel.name} />
+                  </div>
+                  <div className="hotel-details">
+                    <h3>{hotel.name}</h3>
+                    <div className="stars" dangerouslySetInnerHTML={{ __html: `&#9733;`.repeat(hotel.stars) }} />
+                    <p className="location">{hotel.location}</p>
+                    <div className="price-info">
+                      <p className="discount-price">
+                        BDT {hotel.discountPrice}/Night <span className="discount">{hotel.discount}% OFF</span>
+                      </p>
+                      <p className="price-includes">*Price includes VAT & Tax</p>
+                    </div>
+                    <button className="book-now" onClick={() => navigateTo('details', hotel)}>BOOK NOW</button>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <p>No hotels found.</p>
+            )}
+          </div>
+        </section>
+      </main>
+    </div>
+  );
+};
 
-    const hotels = await Hotel.find(filterQuery)
-      .sort(sortBy)
-      .skip(page * limit)
-      .limit(limit);
-
-    const total = await Hotel.countDocuments(filterQuery);
-
-    res.status(200).json({
-      error: false,
-      total,
-      page: page + 1,
-      limit,
-      roomTypeOptions,
-      amenitiesOptions,
-      hotels
-    });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ error: true, message: 'Internal Server Error' });
-  }
-});
-
-
-// Add a new hotel
-router.post('/add-hotel', async (req, res) => {
-  try {
-    const hotel = new Hotel(req.body);
-    await hotel.save();
-    res.status(201).json({ message: 'Hotel added successfully', hotel });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: 'Internal Server Error' });
-  }
-});
-
-// Update an existing hotel
-router.put('/update-hotel/:id', async (req, res) => {
-  try {
-    const { id } = req.params;
-    const updatedHotel = await Hotel.findByIdAndUpdate(id, req.body, { new: true });
-    res.status(200).json({ message: 'Hotel updated successfully', updatedHotel });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: 'Internal Server Error' });
-  }
-});
-
-// Delete a hotel
-router.delete('/delete-hotel/:id', async (req, res) => {
-  try {
-    const { id } = req.params;
-    await Hotel.findByIdAndDelete(id);
-    res.status(200).json({ message: 'Hotel deleted successfully' });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: 'Internal Server Error' });
-  }
-});
-
-module.exports = router;
+export default HotelPage;

@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Login.css';
-
-
-const API_URL = 'https://wander-hub-webapi.vercel.app/api/users';
+const API_URL = 'https://wander-hub-webback.vercel.app/api/users';
 
 // Set Axios default withCredentials to true
 axios.defaults.withCredentials = true;
@@ -21,8 +19,9 @@ const Login = ({ navigateTo }) => {
 
       console.log('Login successful:', response.data);
       localStorage.setItem('token', response.data.accessToken);
+       localStorage.setItem('refreshToken', response.data.refreshToken);
       console.log('Access Token:', response.data.accessToken);
-      console.log('Refresh Token:', response.data.refreshToken); // Display refresh token
+      console.log('Refresh Token:', response.data.refreshToken); 
       navigateTo('home');
     } catch (err) {
       console.error('Login error:', err.response ? err.response.data : err.message);

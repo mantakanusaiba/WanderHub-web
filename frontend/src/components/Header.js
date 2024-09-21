@@ -21,10 +21,13 @@ const Header = ({ onNavClick, onLogout }) => {
         <div className="logo-container">
           <img src={logo} alt="WanderHub Logo" className="logo" style={{ width: '80px', height: 'auto' }} />
         </div>
+
         <h1 style={{ fontSize: '30px', color: '#fff' }}>WanderHub</h1>
         <div className="profile" style={{ display: 'flex', gap: '10px' }}>
           <button onClick={() => onNavClick('profile')} style={buttonStyle}>My Profile</button>
           <button onClick={handleLogout} style={buttonStyle}>Logout</button>
+
+    
         </div>
       </div>
       <nav className="nav-bar" style={{ backgroundColor: '#1496a5', padding: '5px' }}>
@@ -94,3 +97,4 @@ const dropdownItemStyle = {
 };
 
 export default Header;
+

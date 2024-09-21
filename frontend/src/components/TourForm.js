@@ -16,7 +16,7 @@ const TourForm = ({ packageId, onBookingComplete, navigateTo }) => {
 
   const fetchBookings = useCallback(async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/tourBook', {
+      const response = await fetch('https://wander-hub-webback.vercel.app/api/tourBook', {
         method: 'GET',
         headers: {
           Accept: 'application/json',
@@ -50,8 +50,8 @@ const TourForm = ({ packageId, onBookingComplete, navigateTo }) => {
     };
 
     const url = editingBookingId
-      ? `http://localhost:5000/api/tourBook/${editingBookingId}`
-      : `http://localhost:5000/api/tourBook/${packageId}`;
+      ? `https://wander-hub-webback.vercel.app/api/tourBook/${editingBookingId}`
+      : `https://wander-hub-webback.vercel.app/api/tourBook/${packageId}`;
 
     const method = editingBookingId ? 'PUT' : 'POST';
 
@@ -90,7 +90,7 @@ const TourForm = ({ packageId, onBookingComplete, navigateTo }) => {
     if (!confirmDelete) return;
 
     try {
-      const response = await fetch(`http://localhost:5000/api/tourBook/${bookingId}`, {
+      const response = await fetch(`https://wander-hub-webback.vercel.app/api/tourBook/${bookingId}`, {
         method: 'DELETE',
       });
 
