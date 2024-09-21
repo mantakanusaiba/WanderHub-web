@@ -38,9 +38,11 @@ const Profile = () => {
         <div className="profile-image">
           {profileImage && <img src={profileImage} alt="Profile" />}
         </div>
-        <div className="profile-details">
-          <p><strong>Name:</strong> {userDetails.name}</p>
-          <p><strong>Email:</strong> {userDetails.email}</p>
+        <div className="profile-row">
+          <strong>Name:</strong> {userDetails.name}
+        </div>
+        <div className="profile-row">
+          <strong>Email:</strong> {userDetails.email}
         </div>
       </div>
     </div>
@@ -48,3 +50,4 @@ const Profile = () => {
 };
 
 export default Profile;
+
